@@ -39,12 +39,16 @@ module.exports = (text, options = {}) => {
 		})
 	) || [];
 	for (const url of urls) {
-		add(url);
+		// Avoid using email addresses for urls
+		if (options.excludeEmail && text.contains('@' + url)) {}
+		else {
+			add(url);
 
-		if (options.extractFromQueryString) {
-			const qsUrls = getUrlsFromQueryParams(url);
-			for (const qsUrl of qsUrls) {
-				add(qsUrl);
+			if (options.extractFromQueryString) {
+				const qsUrls = getUrlsFromQueryParams(url);
+				for (const qsUrl of qsUrls) {
+					add(qsUrl);
+				}
 			}
 		}
 	}
