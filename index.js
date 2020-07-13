@@ -40,7 +40,7 @@ module.exports = (text, options = {}) => {
 	) || [];
 	for (const url of urls) {
 		// Avoid using email addresses for urls
-		if (options.excludeEmail && text.contains('@' + url)) {}
+		if (options.excludeEmail && text.includes('@' + url)) {}
 		else {
 			add(url);
 
